@@ -27,6 +27,6 @@ public class BasicNavigation {
         System.out.println(url);
         //selenium cannot close browser automatically
         //for this, we use method close()
-        driver.close();
+        driver.quit();
     }
 }
