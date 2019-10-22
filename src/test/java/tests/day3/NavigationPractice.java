@@ -31,7 +31,7 @@ public class NavigationPractice {
 
         //to refresh/reload a webpage/website
         driver.navigate().refresh();
-
+        driver.getTitle(); // <title>Google</title>
         //shutdown browser
         driver.quit();
         //if tab only one, close() will shutdown browser
