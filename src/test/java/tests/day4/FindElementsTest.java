@@ -17,6 +17,7 @@ public class FindElementsTest {
         WebElement button = driver.findElement(By.id("form_submit"));
         //to click on the element
         button.click();
+        //wait for 2 seconds
         BrowserUtils.wait(2);
         driver.close();
     }
