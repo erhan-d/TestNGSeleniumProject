@@ -21,6 +21,7 @@ public class BrowserFactory {
             WebDriverManager.firefoxdriver().setup();
             return new FirefoxDriver();
         }
-        return null;
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver();
     }
 }
