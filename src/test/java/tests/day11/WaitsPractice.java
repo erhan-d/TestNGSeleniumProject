@@ -1,6 +1,5 @@
 package tests.day11;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
@@ -134,6 +133,7 @@ public class WaitsPractice {
                 .pollingEvery(Duration.ofMillis(200))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(ElementNotVisibleException.class);
+
         WebElement message = (WebElement) wait.until(new Function<WebDriver, WebElement>() {
             @Override
             public WebElement apply(WebDriver driver) {
