@@ -11,8 +11,8 @@ import utils.Driver;
 //for each page of application
 //login page = login page class
 //every page class will store webelements and methods related to that page
-public class LoginPage {
-    //break till 3:05
+public class LoginPage extends BasePage{
+
     @FindBy(id = "prependedInput") //this line will initialize web element
     public WebElement userNameInput;
 
