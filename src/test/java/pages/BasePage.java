@@ -1,6 +1,8 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -18,11 +20,46 @@ public class BasePage {
     @FindBy(css = "div[class='loader-mask shown']")
     public WebElement loaderMask;
 
+    @FindBy(css = "h1[class='oro-subtitle']")
+    public WebElement pageSubTitle;
+
+    @FindBy(css = "#user-menu > a")
+    public WebElement userName;
+
+    @FindBy(linkText = "Logout")
+    public WebElement logOutLink;
+
+    @FindBy(linkText = "My User")
+    public WebElement myUser;
+
     public BasePage() {
         //this method requires to provide webdriver object for @FindBy
         //and page class
         //this means this page class
         PageFactory.initElements(Driver.get(), this);
+    }
+
+    /**
+     * While this loading screen present, html code is a not complete
+     * Some elements can be missing
+     * Also, you won't be able to interact with any elements
+     * All actions will be intercepted
+     * Waits until loader mask (loading bar, spinning wheel) disappears
+     * @return true if loader mask is gone, false if something went wrong
+     */
+    public boolean waitUntilLoaderMaskDisappear(){
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
+        try{
+            wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+            return true;
+        } catch (NoSuchElementException e){
+            System.out.println("Loader mask not found!");
+            System.out.println(e.getMessage());
+            return true; // no loader mask, all good, return true
+        } catch (WebDriverException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
     /**
