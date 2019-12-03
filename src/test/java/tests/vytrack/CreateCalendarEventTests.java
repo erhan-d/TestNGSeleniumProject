@@ -1,5 +1,6 @@
 package tests.vytrack;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CalendarEventsPage;
 import pages.CreateCalendarEventPage;
@@ -20,6 +21,15 @@ public class CreateCalendarEventTests extends TestBase {
 
         //go to calendar events page
         loginPage.navigateTo("Activities", "Calendar Events");
+
+        //click on create calendar event button
+        calendarEventsPage.clickToCreateCalendarEvent();
+
+        String expectedOwner = "Stephan Haley";
+        String actualOwner = createCalendarEventPage.owner.getText();
+
+        Assert.assertEquals(actualOwner, expectedOwner);
+
 
     }
 }
