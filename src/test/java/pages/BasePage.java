@@ -52,14 +52,14 @@ public class BasePage {
     public boolean waitUntilLoaderMaskDisappear() {
         WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
         try {
-            wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div[class='loader-mask shown']")));
             return true;
         } catch (NoSuchElementException e) {
             System.out.println("Loader mask not found!");
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return true; // no loader mask, all good, return true
         } catch (WebDriverException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return false;
     }
@@ -81,7 +81,6 @@ public class BasePage {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(moduleLocator)));
 
         WebElement module = Driver.get().findElement(By.xpath(moduleLocator));
-
         wait.until(ExpectedConditions.visibilityOf(module));
         wait.until(ExpectedConditions.elementToBeClickable(module));
 
@@ -91,9 +90,6 @@ public class BasePage {
         WebElement subModule = Driver.get().findElement(By.xpath(subModuleLocator));
         wait.until(ExpectedConditions.visibilityOf(subModule));
         subModule.click();
-        //after navigation
-        //wait until loader mask disappear
-        wait.until(ExpectedConditions.invisibilityOf(loaderMask));
     }
 
     /**
