@@ -46,18 +46,19 @@ public class BasePage {
      * Also, you won't be able to interact with any elements
      * All actions will be intercepted
      * Waits until loader mask (loading bar, spinning wheel) disappears
+     *
      * @return true if loader mask is gone, false if something went wrong
      */
-    public boolean waitUntilLoaderMaskDisappear(){
+    public boolean waitUntilLoaderMaskDisappear() {
         WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
-        try{
+        try {
             wait.until(ExpectedConditions.invisibilityOf(loaderMask));
             return true;
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println("Loader mask not found!");
             System.out.println(e.getMessage());
             return true; // no loader mask, all good, return true
-        } catch (WebDriverException e){
+        } catch (WebDriverException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -68,13 +69,13 @@ public class BasePage {
      * provide tab name, for example "Fleet" as a String
      * and module name, for example "Vehicles" as a String as well
      * then based on these values, locators will be created
+     *
      * @param moduleName
-     * @param subModuleName
-     * normalize-space() same line .trim() in java
+     * @param subModuleName normalize-space() same line .trim() in java
      */
     public void navigateTo(String moduleName, String subModuleName) {
-        String moduleLocator = "//*[normalize-space()='"+moduleName+"' and @class='title title-level-1']";
-        String subModuleLocator = "//*[normalize-space()='"+subModuleName+"' and @class='title title-level-2']";
+        String moduleLocator = "//*[normalize-space()='" + moduleName + "' and @class='title title-level-1']";
+        String subModuleLocator = "//*[normalize-space()='" + subModuleName + "' and @class='title title-level-2']";
 
         WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(moduleLocator)));
@@ -84,6 +85,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(module));
         wait.until(ExpectedConditions.elementToBeClickable(module));
 
+        waitUntilLoaderMaskDisappear();
         module.click(); //once we clicked on module, submodule should be visible
 
         WebElement subModule = Driver.get().findElement(By.xpath(subModuleLocator));
@@ -104,18 +106,19 @@ public class BasePage {
         return pageSubTitle.getText();
     }
 
-    public String getUserName(){
+    public String getUserName() {
         waitUntilLoaderMaskDisappear();
         BrowserUtils.waitForVisibility(userName, 5);
         return userName.getText();
     }
-    public void logOut(){
+
+    public void logOut() {
         BrowserUtils.wait(2);
         BrowserUtils.clickWithJS(userName);
         BrowserUtils.clickWithJS(logOutLink);
     }
 
-    public void goToMyUser(){
+    public void goToMyUser() {
         waitUntilLoaderMaskDisappear();
         BrowserUtils.waitForClickablility(userName, 5).click();
         BrowserUtils.waitForClickablility(myUser, 5).click();
