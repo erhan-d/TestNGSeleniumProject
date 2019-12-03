@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.BrowserUtils;
 import utils.Driver;
 
 //everything that is in common among pages
@@ -91,6 +92,33 @@ public class BasePage {
         //after navigation
         //wait until loader mask disappear
         wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+    }
+
+    /**
+     * @return page name, for example: Dashboard
+     */
+    public String getPageSubTitle() {
+        //ant time we are verifying page name, or page subtitle, loader mask appears
+        waitUntilLoaderMaskDisappear();
+        BrowserUtils.waitForStaleElement(pageSubTitle);
+        return pageSubTitle.getText();
+    }
+
+    public String getUserName(){
+        waitUntilLoaderMaskDisappear();
+        BrowserUtils.waitForVisibility(userName, 5);
+        return userName.getText();
+    }
+    public void logOut(){
+        BrowserUtils.wait(2);
+        BrowserUtils.clickWithJS(userName);
+        BrowserUtils.clickWithJS(logOutLink);
+    }
+
+    public void goToMyUser(){
+        waitUntilLoaderMaskDisappear();
+        BrowserUtils.waitForClickablility(userName, 5).click();
+        BrowserUtils.waitForClickablility(myUser, 5).click();
     }
 
 }
