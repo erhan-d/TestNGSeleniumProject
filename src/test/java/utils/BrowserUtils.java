@@ -85,7 +85,7 @@ public class BrowserUtils {
      * @param name
      * take a name of a test and returns a path to screenshot takes
      */
-    public String getScreenshot(String name) {
+    public static String getScreenshot(String name) {
         // name the screenshot with the current date time to avoid duplicate name
 //        String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));​
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");

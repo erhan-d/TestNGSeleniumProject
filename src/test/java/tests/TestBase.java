@@ -3,12 +3,16 @@ package tests;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import utils.BrowserUtils;
 import utils.ConfigurationReader;
 import utils.Driver;
+
+import java.io.IOException;
 
 //this class will be a test foundation for all test classes
 //we will put here only before and after parts
@@ -55,8 +59,22 @@ public abstract class TestBase {
         Driver.get().get(url);
     }
 
+    //ITestResult class describes the result of a test. (in TestNG)
     @AfterMethod
-    public void teardown(){
+    public void teardown(ITestResult result){
+        if(result.getStatus() == ITestResult.FAILURE){
+            extentTest.fail(result.getName());
+            extentTest.fail(result.getThrowable());
+            try {
+                //BrowserUtils.getScreenshot(result.getName()) - takes screenshot and returns location of that screenshot
+                extentTest.addScreenCaptureFromPath(BrowserUtils.getScreenshot(result.getName()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if(result.getStatus() == ITestResult.SKIP){
+            extentTest.skip("Test case was skipped : "+result.getName());
+        }
+
         Driver.close();
     }
 
