@@ -27,7 +27,7 @@ public abstract class TestBase {
 
     @BeforeTest
     public void beforeTest(){
-
+        String filePath = System.getProperty("user.dir") + "/test-output/report.html";
     }
 
     @BeforeMethod
