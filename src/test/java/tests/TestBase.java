@@ -44,7 +44,7 @@ public abstract class TestBase {
         extentReports.setSystemInfo("Browser", ConfigurationReader.getProperty("browser"));
         extentReports.setSystemInfo("OS", System.getProperty("os.name"));
     }
-    //please comeback at 12:17
+
 
     @AfterTest
     public void afterTest(){

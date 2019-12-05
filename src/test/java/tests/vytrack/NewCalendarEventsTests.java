@@ -20,7 +20,7 @@ public class NewCalendarEventsTests extends TestBase {
         loginPage.login("storemanager85", "UserUser123");
         loginPage.navigateTo("Activities", "Calendar Events");
 
-        String expectedSubtitle = "All Calendar Event";
+        String expectedSubtitle = "All Calendar Events";
         String actualSubTitle = loginPage.getPageSubTitle();
 
         Assert.assertEquals(actualSubTitle, expectedSubtitle);
