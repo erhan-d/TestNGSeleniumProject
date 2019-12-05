@@ -48,6 +48,7 @@ public abstract class TestBase {
         extentReports.flush();
     }
 
+
     @BeforeMethod
     public void setup(){
         String url = ConfigurationReader.getProperty("url");
