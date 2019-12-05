@@ -27,7 +27,13 @@ public abstract class TestBase {
 
     @BeforeTest
     public void beforeTest(){
+        //location of report
+        //it's gonna be next to target folder, test-output folder
         String filePath = System.getProperty("user.dir") + "/test-output/report.html";
+        extentReports = new ExtentReports();
+        extentHtmlReporter = new ExtentHtmlReporter(filePath);
+        extentReports.attachReporter(extentHtmlReporter);
+        extentHtmlReporter.config().setReportName("Vytrack Test Results");
     }
 
     @BeforeMethod
