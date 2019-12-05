@@ -5,8 +5,6 @@ import org.testng.annotations.BeforeMethod;
 import utils.ConfigurationReader;
 import utils.Driver;
 
-import java.util.concurrent.TimeUnit;
-
 //this class will be a test foundation for all test classes
 //we will put here only before and after parts
 //In this way before and after methods will be the same
