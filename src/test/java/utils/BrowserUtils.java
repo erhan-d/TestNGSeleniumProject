@@ -78,7 +78,8 @@ public class BrowserUtils {
         WebDriverWait wait = new WebDriverWait(Driver.get(), timeout);
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
-//  PLEASE COMEBACK AT 11:07
+
+//    PLEASE INSERT THIS METHOD INTO BROWSER UTILS
     /*
      * takes screenshot
      * @param name
@@ -89,15 +90,14 @@ public class BrowserUtils {
 //        String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));​
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String date = df.format(new Date());
-
         // TakesScreenshot ---> interface from selenium which takes screenshots
         TakesScreenshot ts = (TakesScreenshot) Driver.get();
         File source = ts.getScreenshotAs(OutputType.FILE);
         // full path to the screenshot location
+        //where screenshot will be stored
+        //System.getProperty("user.dir") returns path to the project as a string
         String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + date + ".png";
-
         File finalDestination = new File(target);
-
         // save the screenshot to the path given
         try {
             FileUtils.copyFile(source, finalDestination);
@@ -106,4 +106,6 @@ public class BrowserUtils {
         }
         return target;
     }
+
+
 }
