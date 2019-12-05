@@ -67,14 +67,16 @@ public abstract class TestBase {
             extentTest.fail(result.getThrowable());
             try {
                 //BrowserUtils.getScreenshot(result.getName()) - takes screenshot and returns location of that screenshot
+                //this method throws IOException (which is checked exception)
+                //any checked exception must be handled
                 extentTest.addScreenCaptureFromPath(BrowserUtils.getScreenshot(result.getName()));
             } catch (IOException e) {
+                //print error info
                 e.printStackTrace();
             }
         }else if(result.getStatus() == ITestResult.SKIP){
             extentTest.skip("Test case was skipped : "+result.getName());
         }
-
         Driver.close();
     }
 

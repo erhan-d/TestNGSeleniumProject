@@ -88,7 +88,7 @@ public class BrowserUtils {
     public static String getScreenshot(String name) {
         // name the screenshot with the current date time to avoid duplicate name
 //        String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));​
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("-yyyy-MM-dd-HH-mm");
         String date = df.format(new Date());
         // TakesScreenshot ---> interface from selenium which takes screenshots
         TakesScreenshot ts = (TakesScreenshot) Driver.get();
@@ -96,7 +96,12 @@ public class BrowserUtils {
         // full path to the screenshot location
         //where screenshot will be stored
         //System.getProperty("user.dir") returns path to the project as a string
+        //use \\ instead of /
         String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + date + ".png";
+        //if it doesn't take screenshot in any way, remove date and time part
+        //for some user it makes problems
+        String target2 = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + ".png";
+
         File finalDestination = new File(target);
         // save the screenshot to the path given
         try {
