@@ -82,7 +82,9 @@ public class BrowserUtils {
 //    PLEASE INSERT THIS METHOD INTO BROWSER UTILS
     /*
      * takes screenshot
-     * @param name
+     * whenever you call this method
+     * it takes screenshot and returns location of the screenshot
+     * @param name of test or whatever your like
      * take a name of a test and returns a path to screenshot takes
      */
     public static String getScreenshot(String name) {
@@ -96,7 +98,6 @@ public class BrowserUtils {
         // full path to the screenshot location
         //where screenshot will be stored
         //System.getProperty("user.dir") returns path to the project as a string
-        //use \\ instead of /
         String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + date + ".png";
         //if it doesn't take screenshot in any way, remove date and time part
         //for some user it makes problems
