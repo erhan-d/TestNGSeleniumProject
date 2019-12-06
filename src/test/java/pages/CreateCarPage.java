@@ -11,12 +11,15 @@ public class CreateCarPage extends BasePage {
     @FindBy(css = "[id^='custom_entity_type_LicensePlate']")
     public WebElement licensePlateElement;
 
+    @FindBy(name = "custom_entity_type[Driver]")
+    public WebElement driverElement;
+
 
     /**
      * This method stands for selecting tags
      * Provide tag name to select
      * If checkbox already selected, it will not do anything
-     * @param tagName
+     * @param tagName - represents name of tag that has to be selected, like Junior, Senior or Purchased
      * @return webelement of checkbox that was selected
      */
     public WebElement selectTags(String tagName) {
