@@ -14,6 +14,15 @@ public class CreateCarPage extends BasePage {
     @FindBy(name = "custom_entity_type[Driver]")
     public WebElement driverElement;
 
+    @FindBy(name = "custom_entity_type[Location]")
+    public WebElement locationElement;
+
+    @FindBy(xpath = "//div[@class='btn-group pull-right open']/button[contains(text(),'Save and Close')]")
+    public WebElement saveAndCloseButtonElement;
+
+    @FindBy(css = "div[id*='FuelType']")
+    public WebElement fuelTypeElement;
+
 
     /**
      * This method stands for selecting tags
