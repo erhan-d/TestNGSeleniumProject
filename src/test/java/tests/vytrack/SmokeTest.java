@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import tests.TestBase;
 
+
 public class SmokeTest extends TestBase {
 
     @Test(dataProvider = "navigationInfo")
@@ -16,6 +17,8 @@ public class SmokeTest extends TestBase {
         loginPage.login("storemanager85", "UserUser123");
 
         loginPage.navigateTo(moduleName, subModuleName);
+
+        loginPage.waitUntilLoaderMaskDisappear();
 
         Assert.assertEquals(loginPage.getPageSubTitle(), pageSubTitle);
 
@@ -29,7 +32,9 @@ public class SmokeTest extends TestBase {
                 {"Dashboards", "Dashboard", "Dashboard"},
                 {"Dashboards", "Manage Dashboards", "All Manage Dashboards"},
                 {"Fleet", "Vehicles", "All Cars"},
-                {"Customers", "Accounts", "All Accounts"}
+                {"Customers", "Accounts", "All Accounts"},
+                {"Activities", "Calls", "All Calls"},
+                {"Activities", "Calendar Events", "All Calendar Events"}
         };
     }
 }
