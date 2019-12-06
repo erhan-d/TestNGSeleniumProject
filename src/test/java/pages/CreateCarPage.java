@@ -17,8 +17,9 @@ public class CreateCarPage extends BasePage {
      * Provide tag name to select
      * If checkbox already selected, it will not do anything
      * @param tagName
+     * @return webelement of checkbox that was selected
      */
-    public void selectTags(String tagName) {
+    public WebElement selectTags(String tagName) {
         //locator for checkbox is based on label name
         //label and checkbox are siblings
         String locator = "//label[text()='" + tagName + "']/preceding-sibling::input[@type='checkbox']";
@@ -28,5 +29,6 @@ public class CreateCarPage extends BasePage {
         if (!checkBox.isSelected()) {
             checkBox.click();
         }
+        return checkBox;
     }
 }
