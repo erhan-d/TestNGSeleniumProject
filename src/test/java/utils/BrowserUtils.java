@@ -99,10 +99,6 @@ public class BrowserUtils {
         //where screenshot will be stored
         //System.getProperty("user.dir") returns path to the project as a string
         String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + date + ".png";
-        //if it doesn't take screenshot in any way, remove date and time part
-        //for some user it makes problems
-        String target2 = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + ".png";
-
         File finalDestination = new File(target);
         // save the screenshot to the path given
         try {
