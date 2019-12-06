@@ -21,6 +21,11 @@ public class CreateCarPage extends BasePage {
      * If checkbox already selected, it will not do anything
      * @param tagName - represents name of tag that has to be selected, like Junior, Senior or Purchased
      * @return webelement of checkbox that was selected
+     *
+     * CreateCarPage createCarPage = new CreateCarPage();
+     *
+     * createCarPage.selectTags("Senior"); // Senior tag will be selected
+     *
      */
     public WebElement selectTags(String tagName) {
         //locator for checkbox is based on label name
