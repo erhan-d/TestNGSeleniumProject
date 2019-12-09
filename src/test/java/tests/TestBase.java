@@ -26,12 +26,17 @@ public abstract class TestBase {
     protected static ExtentHtmlReporter extentHtmlReporter;
 //    Defines a test. You can add logs, snapshots, assign author and categories to a test and its children.
     protected static ExtentTest extentTest;
-
+//        <parameter name="test" value="regression"></parameter>
     @BeforeTest
-    public void beforeTest(){
+    @Parameters("test")
+    public void beforeTest(@Optional String test){
         //location of report
         //it's gonna be next to target folder, test-output folder
-        String filePath = System.getProperty("user.dir") + "/test-output/report.html";
+        String reportName = "report";
+        if(test != null){
+            reportName = test;
+        }
+        String filePath = System.getProperty("user.dir") + "/test-output/"+reportName+".html";
         extentReports = new ExtentReports();
         extentHtmlReporter = new ExtentHtmlReporter(filePath);
         extentReports.attachReporter(extentHtmlReporter);
