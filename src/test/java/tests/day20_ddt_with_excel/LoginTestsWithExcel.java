@@ -26,6 +26,7 @@ public class LoginTestsWithExcel extends TestBase {
         }else{
             LoginPage loginPage = new LoginPage();
             loginPage.login(username, password);
+            //put here wait for title to be "Dashboard"
             Assert.assertEquals(Driver.get().getTitle(), "Dashboard");
             extentTest.pass("Login test passed for user "+username);
         }
