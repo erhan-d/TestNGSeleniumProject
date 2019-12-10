@@ -92,6 +92,7 @@ public class BasePage {
         WebElement subModule = Driver.get().findElement(By.xpath(subModuleLocator));
         wait.until(ExpectedConditions.visibilityOf(subModule));
         subModule.click();
+
         //it waits until page is loaded and ajax calls are done
         BrowserUtils.waitForPageToLoad(5);
     }
