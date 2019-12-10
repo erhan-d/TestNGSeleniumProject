@@ -16,11 +16,19 @@ public class LoginTestsWithExcel extends TestBase {
     //username	password	firstname	lastname	result
     @Test(dataProvider = "credentials", description = "Login with different credentials")
     public void loginTest(String username, String password, String firstName, String lastName, String result) {
+        //is must because we will ge null pointer exception
         extentTest = extentReports.createTest("Login as "+username);
-        LoginPage loginPage = new LoginPage();
-        loginPage.login(username, password);
-        Assert.assertEquals(Driver.get().getTitle(), "Dashboard");
-        extentTest.pass("Login test passed for user "+username);
+        if(username.equals("username")){
+            //will make test skipped
+            //it will not fail
+            //because first row is dedicated to column names
+            throw new SkipException("Test was skipped because it's first row!");
+        }else{
+            LoginPage loginPage = new LoginPage();
+            loginPage.login(username, password);
+            Assert.assertEquals(Driver.get().getTitle(), "Dashboard");
+            extentTest.pass("Login test passed for user "+username);
+        }
     }
 
     //is a test data supplier
