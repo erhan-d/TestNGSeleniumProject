@@ -145,13 +145,20 @@ public class BrowserUtils {
      */
     public static void waitForPageToLoad(long timeOutInSeconds) {
         ExpectedCondition<Boolean> expectation = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-        ExpectedCondition<Boolean> expectation2 = driver -> ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0").equals(true);
         try {
             WebDriverWait wait = new WebDriverWait(Driver.get(), timeOutInSeconds);
             wait.until(expectation);
-            wait.until(expectation2);
         } catch (Throwable error) {
             error.printStackTrace();
         }
+    }
+
+    /**
+     * Wait for proper page title
+     * @param pageTitle
+     */
+    public static void waitForPageTitle(String pageTitle){
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
+        wait.until(ExpectedConditions.titleIs(pageTitle));
     }
 }

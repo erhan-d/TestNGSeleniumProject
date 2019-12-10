@@ -6,6 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import tests.TestBase;
+import utils.BrowserUtils;
 import utils.Driver;
 import utils.ExcelUtil;
 
@@ -27,6 +28,7 @@ public class LoginTestsWithExcel extends TestBase {
             LoginPage loginPage = new LoginPage();
             loginPage.login(username, password);
             //put here wait for title to be "Dashboard"
+            BrowserUtils.waitForPageTitle("Dashboard");
             Assert.assertEquals(Driver.get().getTitle(), "Dashboard");
             extentTest.pass("Login test passed for user "+username);
         }
