@@ -26,6 +26,8 @@ public class SmokeTest extends TestBase {
 
     }
 
+
+
     @DataProvider(name = "navigationInfo")
     public Object[][] navigationInfo() {
         return new Object[][]{
