@@ -4,12 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BrowserUtils;
 import utils.Driver;
+
+import javax.swing.*;
 
 //everything that is in common among pages
 //can go here
@@ -74,10 +77,11 @@ public class BasePage {
      * @param subModuleName normalize-space() same line .trim() in java
      */
     public void navigateTo(String moduleName, String subModuleName) {
+        Actions actions = new Actions(Driver.get());
         String moduleLocator = "//*[normalize-space()='" + moduleName + "' and @class='title title-level-1']";
         String subModuleLocator = "//*[normalize-space()='" + subModuleName + "' and @class='title title-level-2']";
 
-        WebDriverWait wait = new WebDriverWait(Driver.get(), 30);
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 20);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(moduleLocator)));
 
         WebElement module = Driver.get().findElement(By.xpath(moduleLocator));
@@ -86,15 +90,20 @@ public class BasePage {
 
         waitUntilLoaderMaskDisappear();
 
-//        BrowserUtils.clickWithWait(module); if click is not working well
-        module.click(); //once we clicked on module, submodule should be visible
-
+        BrowserUtils.clickWithWait(module); //if click is not working well
         WebElement subModule = Driver.get().findElement(By.xpath(subModuleLocator));
-        wait.until(ExpectedConditions.visibilityOf(subModule));
-        subModule.click();
-
+        if (!subModule.isDisplayed()) {
+            actions.doubleClick(module).doubleClick().build().perform();
+            try {
+                wait.until(ExpectedConditions.visibilityOf(subModule));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                BrowserUtils.clickWithJS(module);
+            }
+        }
+        BrowserUtils.clickWithWait(subModule); //if click is not working well
         //it waits until page is loaded and ajax calls are done
-        BrowserUtils.waitForPageToLoad(5);
+        BrowserUtils.waitForPageToLoad(10);
     }
 
     /**
@@ -123,6 +132,10 @@ public class BasePage {
         waitUntilLoaderMaskDisappear();
         BrowserUtils.waitForClickablility(userName, 5).click();
         BrowserUtils.waitForClickablility(myUser, 5).click();
+    }
+
+    public void waitForPageSubTitle(String pageSubtitleText) {
+        new WebDriverWait(Driver.get(), 10).until(ExpectedConditions.textToBe(By.cssSelector("h1[class='oro-subtitle']"), pageSubtitleText));
     }
 
 }

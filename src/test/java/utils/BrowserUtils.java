@@ -118,7 +118,7 @@ public class BrowserUtils {
     public static void clickWithWait(WebElement webElement) {
         Wait wait = new FluentWait<>(Driver.get())
                 .withTimeout(Duration.ofSeconds(15))
-                .pollingEvery(Duration.ofMillis(200))
+                .pollingEvery(Duration.ofMillis(800))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(ElementNotVisibleException.class)
                 .ignoring(ElementClickInterceptedException.class)
@@ -134,7 +134,6 @@ public class BrowserUtils {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            element.click();
         }
     }
 
@@ -155,10 +154,13 @@ public class BrowserUtils {
 
     /**
      * Wait for proper page title
+     *
      * @param pageTitle
      */
-    public static void waitForPageTitle(String pageTitle){
+    public static void waitForPageTitle(String pageTitle) {
         WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
         wait.until(ExpectedConditions.titleIs(pageTitle));
+
     }
+
 }
