@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 import utils.BrowserUtils;
 import utils.ConfigurationReader;
 import utils.Driver;
@@ -27,7 +28,8 @@ public abstract class TestBase {
     //    Defines a test. You can add logs, snapshots, assign author and categories to a test and its children.
     protected static ExtentTest extentTest;
 
-    //        <parameter name="test" value="regression"></parameter>
+
+    //         <parameter name="test" value="regression"></parameter>
     @BeforeTest
     @Parameters({"test", "env_url"})
     public void beforeTest(@Optional String test, @Optional String env_url) {
