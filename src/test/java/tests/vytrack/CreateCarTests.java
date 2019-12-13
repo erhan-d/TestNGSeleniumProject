@@ -5,6 +5,7 @@ import pages.CreateCarPage;
 import pages.LoginPage;
 import pages.VehiclesPage;
 import tests.TestBase;
+import utils.ConfigurationReader;
 
 public class CreateCarTests extends TestBase {
 
@@ -42,5 +43,19 @@ public class CreateCarTests extends TestBase {
         LoginPage loginPage = new LoginPage();
         VehiclesPage vehiclesPage = new VehiclesPage();
         CreateCarPage createCarPage = new CreateCarPage();
+
+        String username = ConfigurationReader.getProperty("user_name");
+        String password = ConfigurationReader.getProperty("password");
+
+        loginPage.login(username, password);
+
+        loginPage.navigateTo("Fleet", "Vehicles");
+
+        loginPage.waitUntilLoaderMaskDisappear();
+
+        vehiclesPage.clickToCreateACar();
+
+        loginPage.waitUntilLoaderMaskDisappear();
+
     }
 }
