@@ -82,5 +82,6 @@ public class CreateCarTests extends TestBase {
         BrowserUtils.wait(3);//for demo
         extentTest.info("Created a new car");
 
+
     }
 }
