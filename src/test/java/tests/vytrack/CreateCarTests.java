@@ -5,6 +5,7 @@ import pages.CreateCarPage;
 import pages.LoginPage;
 import pages.VehiclesPage;
 import tests.TestBase;
+import utils.BrowserUtils;
 import utils.ConfigurationReader;
 import utils.ExcelUtil;
 
@@ -78,6 +79,7 @@ public class CreateCarTests extends TestBase {
         loginPage.waitUntilLoaderMaskDisappear();
         createCarPage.saveAndCloseButtonElement.click();//click to save and close
 
+        BrowserUtils.wait(3);//for demo
         extentTest.info("Created a new car");
 
     }
