@@ -65,7 +65,20 @@ public class CreateCarTests extends TestBase {
         //read data from excel spreadsheet as list of map
         //testData it's just reference variable
         List<Map<String, String>> testData = excelUtil.getDataList();
+        //0 means data from first row, License Plate it's a column name
+        //so we are reading from first row and License Plate column
+        createCarPage.licensePlateElement.sendKeys(testData.get(0).get("License Plate"));
+        //enter driver info
+        createCarPage.driverElement.sendKeys(testData.get(0).get("Driver"));
+        //enter model year
+        createCarPage.modelYearElement.sendKeys(testData.get(0).get("Model Year"));
+        //enter color
+        createCarPage.colorElement.sendKeys(testData.get(0).get("Color"));
 
-        createCarPage.licensePlateElement.sendKeys();
+        loginPage.waitUntilLoaderMaskDisappear();
+        createCarPage.saveAndCloseButtonElement.click();//click to save and close
+
+        extentTest.info("Created a new car");
+
     }
 }
