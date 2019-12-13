@@ -34,4 +34,13 @@ public class CreateCarTests extends TestBase {
 
         extentTest.pass("New car was created");
     }
+
+    @Test(description = "Create a car by reading test data from excel file")
+    public void createCarTest(){
+        extentTest = extentReports.createTest("Create a car by reading test data from excel file");
+
+        LoginPage loginPage = new LoginPage();
+        VehiclesPage vehiclesPage = new VehiclesPage();
+        CreateCarPage createCarPage = new CreateCarPage();
+    }
 }
