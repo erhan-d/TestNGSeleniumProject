@@ -1,12 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Regression">
+<suite name="Regression" parallel="classes" thread-count="10">
 
 <!-- in this case we don't need to specify every class one by one, just include package-->
     <test name="Vytrack regression tests">
-        <parameter name="test" value="regression"></parameter>
+
         <packages>
-            <package name="tests.vytrack"></package>
+            <package name="tests.day10"></package>
+
         </packages>
+
+        <classes>
+            <class name="tests.day11.WaitsPractice"/>
+        </classes>
     </test>
 </suite>
 

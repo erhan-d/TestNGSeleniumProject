@@ -11,7 +11,8 @@ import utils.BrowserUtils;
 public class CreateCalendarEventTests extends TestBase {
 
 
-    @Test(description = "Verify owners name is equals to Stephan Haley (it works on qa1 storemenager85)")
+    @Test(description = "Verify owners name is equals to Stephan Haley (it works on qa1 storemenager85)",
+     timeOut = 10000)
     public void test1(){
         LoginPage loginPage = new LoginPage();
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();

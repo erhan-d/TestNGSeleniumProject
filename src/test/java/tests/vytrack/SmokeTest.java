@@ -14,11 +14,13 @@ import utils.Driver;
 
 public class SmokeTest extends TestBase {
 
-    @Test(dataProvider = "navigationInfo")
+    @Test(dataProvider = "navigationInfo",timeOut = 10000)
+
     public void smokeTest(String moduleName, String subModuleName, String pageSubTitle) {
         extentTest = extentReports.createTest("Verify that page subtitle is equals to " + pageSubTitle);
 
         LoginPage loginPage = new LoginPage();
+
         loginPage.login("storemanager85", "UserUser123");
 
         loginPage.navigateTo(moduleName, subModuleName);

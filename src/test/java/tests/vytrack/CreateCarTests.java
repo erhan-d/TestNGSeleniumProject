@@ -14,7 +14,8 @@ import java.util.Map;
 
 public class CreateCarTests extends TestBase {
 
-    @Test(description = "Create some random car")
+    @Test(description = "Create some random car",timeOut = 10000)
+
     public void test1(){
         extentTest = extentReports.createTest("Create a new car");
 
@@ -41,7 +42,8 @@ public class CreateCarTests extends TestBase {
         extentTest.pass("New car was created");
     }
 
-    @Test(description = "Create a car by reading test data from excel file")
+    @Test(description = "Create a car by reading test data from excel file",timeOut = 10000)
+
     public void createCarTest(){
         extentTest = extentReports.createTest("Create a car by reading test data from excel file");
 

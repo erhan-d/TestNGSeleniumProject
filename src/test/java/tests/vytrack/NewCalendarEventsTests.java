@@ -8,7 +8,8 @@ import tests.TestBase;
 public class NewCalendarEventsTests extends TestBase {
 
 
-    @Test(description = "Verify that page subtitle is equals to 'All Calendar Events'")
+    @Test(description = "Verify that page subtitle is equals to 'All Calendar Events'",timeOut = 10000)
+
     public void test1() {
         //this step is required for every test
         //otherwise you will get nullpointer exception

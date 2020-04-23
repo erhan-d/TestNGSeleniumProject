@@ -40,6 +40,7 @@ public class LoginPage extends BasePage{
      * @param password
      */
     public void login(String userName, String password){
+        userNameInput.clear();
         userNameInput.sendKeys(userName);
         //Keys.ENTER to replace login click
         passwordInput.sendKeys(password, Keys.ENTER);

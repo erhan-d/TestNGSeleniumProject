@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression" parallel="tests" thread-count="10">
+
+    <!-- in this case we don't need to specify every class one by one, just include package-->
+    <test name=" test1">
+
+        <classes>
+            <class name="tests.vytrack.CalendarEventsTests"/>
+        </classes>
+    </test>
+
+    <test name=" test2">
+        <parameter name="env_url2" value="https://qa2.vytrack.com/"></parameter>
+        <classes>
+            <class name="tests.vytrack.CreateCalendarEventTests"/>
+        </classes>
+    </test>
+
+    <test name=" test3">
+        <parameter name="env_url3" value="https://qa3.vytrack.com/"></parameter>
+        <packages>
+            <package name="tests.day10"></package>
+        </packages>
+    </test>
+
+
+</suite>

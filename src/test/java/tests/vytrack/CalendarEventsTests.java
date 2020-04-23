@@ -53,14 +53,16 @@ public class CalendarEventsTests {
     }
 
 
-    @Test(description = "Verify page subtitle")
+    @Test(description = "Verify page subtitle",timeOut = 10000)
+
     public void test1(){
         String expectedSubtitle = "All Calendar Events";
         String actualSubtitle = driver.findElement(By.className("oro-subtitle")).getText();
         Assert.assertEquals(actualSubtitle, expectedSubtitle, "Subtitle is wrong!");
     }
 
-    @Test(description = "Verify that 'Create Calendar event' button is displayed")
+    @Test(description = "Verify that 'Create Calendar event' button is displayed",timeOut = 10000)
+
     public void test2(){
         Assert.assertTrue(driver.findElement(By.cssSelector("[title='Create Calendar event']")).isDisplayed());
     }

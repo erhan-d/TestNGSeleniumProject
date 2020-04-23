@@ -16,7 +16,8 @@ import utils.Driver;
 public class LoginTests extends TestBase {
 
 
-    @Test(description = "Verify that page title is a 'Dashboard'")
+    @Test(description = "Verify that page title is a 'Dashboard'",timeOut = 10000)
+
     public void test1(){
         //create page object
         LoginPage loginPage = new LoginPage();
